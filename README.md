@@ -1,16 +1,16 @@
 # 04 - Availability Calendar
 
 This branch introduces the **Availability Calendar** feature for each property.  
-It allows hosts to control which dates are available for booking.
+It allows hosts to control which dates are available for booking, with a dynamic UI using Livewire.
 
 ---
 
 ## ✅ Objectives
 
-- Create a model and table for `PropertyAvailability`.
-- Define a relationship between `Property` and its availability dates.
-- Allow setting whether a property is available on a given day.
+- Create a model and migration for `PropertyAvailability`.
 - Seed 30 days of availability per property.
+- Set up Eloquent relationships.
+- Add a Livewire interface to manage available dates.
 
 ---
 
@@ -18,16 +18,13 @@ It allows hosts to control which dates are available for booking.
 
 ### 1. Migration: `property_availabilities` table
 
-| Field           | Type       | Description                            |
-|----------------|------------|----------------------------------------|
-| `id`           | bigint     | Primary key                            |
-| `property_id`  | foreignId  | References `properties.id`             |
-| `date`         | date       | Specific day to check availability     |
-| `is_available` | boolean    | `true` if the property is available    |
-| `timestamps`   | timestamps | Created and updated time                |
-
 ```php
-$table->foreignId('property_id')->constrained()->onDelete('cascade');
-$table->date('date');
-$table->boolean('is_available')->default(true);
-$table->unique(['property_id', 'date']);
+Schema::create('property_availabilities', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('property_id')->constrained()->onDelete('cascade');
+    $table->date('date');
+    $table->boolean('is_available')->default(true);
+    $table->timestamps();
+
+    $table->unique(['property_id', 'date']);
+});
