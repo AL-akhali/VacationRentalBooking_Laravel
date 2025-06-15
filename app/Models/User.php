@@ -47,6 +47,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+
     // التحقق من الدور
     public function isHost(): bool
     {

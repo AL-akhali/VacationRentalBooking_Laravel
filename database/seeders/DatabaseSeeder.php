@@ -14,11 +14,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        $this->call(UserSeeder::class);
+        // Seeder المستخدمين
+        $this->call([
+            UserSeeder::class,
+            PropertySeeder::class,
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // مستخدم ثابت
+        $host = User::factory()->create([
+            'name' => 'Test Host',
+            'email' => 'host@example.com',
             'role' => 'host',
         ]);
     }
