@@ -1,0 +1,17 @@
+{
+    "name": "vendor/laravel-property-booking",
+    "description": "Vacation rental booking package for Laravel.",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\PropertyBooking\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vendor\\PropertyBooking\\PropertyBookingServiceProvider"
+            ]
+        }
+    },
+    "require": {}
+}
