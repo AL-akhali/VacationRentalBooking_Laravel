@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             PropertySeeder::class,
+            PropertyPricingRuleSeeder::class,
+
         ]);
 
         // مستخدم ثابت
